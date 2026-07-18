@@ -33,7 +33,7 @@ public class Login extends JFrame implements ActionListener {
         //for the box or textfield
         cardTextField=new JTextField();
         cardTextField.setBounds(300, 150, 400, 40);
-        cardTextField.setFont(new Font("Arial",Font.BOLD,15));
+        cardTextField.setFont(new Font("Arial",Font.BOLD,30));
         add(cardTextField);
 
 
