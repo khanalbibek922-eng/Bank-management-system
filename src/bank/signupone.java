@@ -177,7 +177,7 @@ public class signupone extends JFrame implements ActionListener {
 
         getContentPane().setBackground(Color.white);
         setSize(700, 800); // to make the form size
-        setLocation(350, 150);
+        setLocation(500, 100);
         setVisible(true);
 
 
@@ -200,38 +200,41 @@ public class signupone extends JFrame implements ActionListener {
             gender = "Female";
         }
         String email = emailtextfield.getText();
-        String marital=null;
-        if(married.isSelected()){
-            marital="Married";
-        }
-        else if(unmarried.isSelected()){
-            marital="Unmarried";
-        }
-        else if(other.isSelected()){
-            marital="Others";
+        String marital = null;
+        if (married.isSelected()) {
+            marital = "Married";
+        } else if (unmarried.isSelected()) {
+            marital = "Unmarried";
+        } else if (other.isSelected()) {
+            marital = "Others";
         }
 
-        String address= addresstextfield.getText();
-        String state=statetextfield.getText();
-        String city=citytextfield.getText();
-        String pincode=pincodetextfield.getText();
+        String address = addresstextfield.getText();
+        String state = statetextfield.getText();
+        String city = citytextfield.getText();
+        String pincode = pincodetextfield.getText();
 
-        try{
-            if (name.trim().isEmpty()){
+        try {
+            if (name.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Name is required");
+            } else {
+                connection c = new connection();
+                String query = "insert into signup values('" + formno + "','" + name + "','" + fname + "','" + email + "','" + dob + "','" + marital + "','" + gender + "','" + address + "','" + state + "','" + city + "','" + pincode + "')";
+                c.s.executeUpdate(query);//to run the ddl command
+//
+//                if(ae.getSource()==next){
+//                    setVisible(false);
+//                    new signuptwo().setVisible(true);
+//                }
             }
-            else{
-            connection c = new connection();
-            String query="insert into signup values('"+formno+"','"+name+"','"+fname+"','"+email+"','"+dob+"','"+marital+"','"+gender+"','"+address+"','"+state+"','"+city+"','"+pincode+"')";
-         c.s.executeUpdate(query);//to run the ddl command
-            }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
 
-    public static void main(String[] args) {
+
+ public static void main (String args[]){
         new signupone();
 
     }

@@ -76,7 +76,7 @@ public class Login extends JFrame implements ActionListener {
         setVisible(true); // to saw the frame because the frame is default hidden
         setLocation(350,200);
     }
-public void actionPerformed(ActionEvent ae){  //when we click the buttons by using these we can give command
+public void actionPerformed(ActionEvent ae){  //when we click the buttons it runs automatically by usong performed
 if(ae.getSource()==login){
 
 }
@@ -85,6 +85,8 @@ else if(ae.getSource()==clear){
    PinTextField.setText("");
 }
 else if(ae.getSource()==Signup){
+    setVisible(false);// to change the frame when we click signup
+    new signupone().setVisible(true);//now it open the signup frame
 
 }
 }
