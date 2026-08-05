@@ -20,9 +20,9 @@ public class Login extends JFrame implements ActionListener {
         label.setBounds(70,0,100,100);
         add(label);// to add the component into the frame
 
-        JLabel text=new JLabel("Welcome to ATM");
-        text.setFont(new Font("Osward",Font.BOLD,38));
-        text.setBounds(200,40,400,40);
+        JLabel text=new JLabel("Welcome to Bank Account");
+        text.setFont(new Font("Osward",Font.BOLD,30));
+        text.setBounds(220,40,500,50);
         add(text);
 
         JLabel cardno=new JLabel("Card No:");
