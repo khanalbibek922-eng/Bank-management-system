@@ -33,7 +33,7 @@ public class Login extends JFrame implements ActionListener {
         //for the box or textfield
         cardTextField=new JTextField();
         cardTextField.setBounds(300, 150, 400, 40);
-        cardTextField.setFont(new Font("Arial",Font.BOLD,30));
+        cardTextField.setFont(new Font("Arial",Font.PLAIN,20));
         add(cardTextField);
 
 
@@ -45,27 +45,37 @@ public class Login extends JFrame implements ActionListener {
         //for the box or textfield
         PinTextField=new JPasswordField();
         PinTextField.setBounds(300, 220, 400, 40);
-       cardTextField.setFont(new Font("Arial",Font.BOLD,10));
+        PinTextField.setFont(new Font("Arial",Font.BOLD,20));
         add(PinTextField);
 
         //for the sign in button
         login=new JButton("Sign in");
         login.setBounds(300, 300, 100,30);
-        login.setForeground(Color.BLACK);
+        login.setForeground(Color.WHITE);
+        login.setBackground(Color. BLACK );
+        login.setBorderPainted(false);
+        login.setOpaque(true);
+        login.addActionListener(this);
         login.addActionListener(this); // to give the response to the button what we click
         add(login);
 
         //for the back button
          clear=new JButton("Clear");
-        clear.setBounds(430,300,100,30);
+        clear.setBounds(490,300,100,30);
         clear.setBackground(Color.BLACK);
+        clear.setForeground(Color.WHITE);
+        clear.setBorderPainted(false);
+        clear.setOpaque(true);
         clear.addActionListener(this);
         add(clear);
 
         //for sign up button
         Signup=new JButton("Sign up");
-        Signup.setBounds(300,335,230,30);
+        Signup.setBounds(400,350,100,30);
         Signup.setBackground(Color.BLACK);
+        Signup.setForeground(Color.WHITE);
+        Signup.setBorderPainted(false);
+        Signup.setOpaque(true);
         Signup.addActionListener(this);
         add(Signup);
 

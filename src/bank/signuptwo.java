@@ -7,7 +7,8 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
-public class signuptwo extends JFrame {
+public class signuptwo extends JFrame implements ActionListener {
+
 
 
     signuptwo() {
@@ -117,6 +118,17 @@ public class signuptwo extends JFrame {
         accountexist.add(no1);
 
 
+        // for the next button
+        JButton next=new JButton("Next");
+        next.setFont(new Font("Raleway",Font.BOLD,20));
+        next.setBounds(550, 570, 100, 30);
+        next.setBackground(Color.BLACK);
+        next.setForeground(Color.WHITE);
+        next.setBorderPainted(false);
+        next.setOpaque(true);
+        add(next);
+
+
 
 
 
@@ -134,6 +146,11 @@ public class signuptwo extends JFrame {
 
     public static void main(String[] args) {
         new signuptwo();
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 }
