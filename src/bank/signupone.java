@@ -25,8 +25,8 @@ public class signupone extends JFrame implements ActionListener {
 
         // to make the random number application panel
         JLabel formno = new JLabel("Application form no:" + random);
-        formno.setFont(new Font("Osward", Font.BOLD, 35));
-        formno.setBounds(170, 20, 500, 30);
+        formno.setFont(new Font("Osward", Font.ITALIC, 30));
+        formno.setBounds(170, 20, 500, 50);
         add(formno);
 
         // to make the sub header
@@ -42,7 +42,7 @@ public class signupone extends JFrame implements ActionListener {
         add(Name);
 
         nametextfield = new JTextField();
-        nametextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        nametextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         nametextfield.setBounds(280, 140, 300, 30);
         add(nametextfield);
 
@@ -53,7 +53,7 @@ public class signupone extends JFrame implements ActionListener {
         add(fName);
 
         fnametextfield = new JTextField();
-        fnametextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        fnametextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         fnametextfield.setBounds(280, 190, 300, 40);
         add(fnametextfield);
 
@@ -65,7 +65,7 @@ public class signupone extends JFrame implements ActionListener {
 
         // to add the clander we have to make the jar file and use JDateChooser
         datechooser = new JDateChooser();
-        datechooser.setBounds(280, 245, 310, 30);
+        datechooser.setBounds(280, 240, 300, 30);
         datechooser.setForeground(Color.RED);
         add(datechooser);
 
@@ -96,7 +96,7 @@ public class signupone extends JFrame implements ActionListener {
         add(email);
 
         emailtextfield = new JTextField();
-        emailtextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        emailtextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         emailtextfield.setBounds(280, 340, 300, 40);
         add(emailtextfield);
 
@@ -129,7 +129,7 @@ public class signupone extends JFrame implements ActionListener {
         add(Address);
 
         addresstextfield = new JTextField();
-        addresstextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        addresstextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         addresstextfield.setBounds(280, 440, 300, 40);
         add(addresstextfield);
 
@@ -139,7 +139,7 @@ public class signupone extends JFrame implements ActionListener {
         add(state);
 
         statetextfield = new JTextField();
-        statetextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        statetextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         statetextfield.setBounds(280, 490, 300, 40);
         add(statetextfield);
 
@@ -149,7 +149,7 @@ public class signupone extends JFrame implements ActionListener {
         add(city);
 
         citytextfield = new JTextField();
-        citytextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        citytextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         citytextfield.setBounds(280, 540, 300, 40);
         add(citytextfield);
 
@@ -159,7 +159,7 @@ public class signupone extends JFrame implements ActionListener {
         add(pincode);
 
         pincodetextfield = new JTextField();
-        pincodetextfield.setFont(new Font("Raleway", Font.BOLD, 20));
+        pincodetextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
         pincodetextfield.setBounds(280, 590, 300, 40);
         add(pincodetextfield);
 
@@ -171,11 +171,13 @@ public class signupone extends JFrame implements ActionListener {
         next.setOpaque(true);
         next.setContentAreaFilled(true);
         next.setBorderPainted(false);
+        next.setFocusPainted(false);
         next.setBounds(520, 700, 100, 30);
         next.addActionListener(this);
         add(next);
 
         getContentPane().setBackground(Color.white);
+        setTitle("New Account Application From one");
         setSize(700, 800); // to make the form size
         setLocation(500, 100);
         setVisible(true);
@@ -186,12 +188,11 @@ public class signupone extends JFrame implements ActionListener {
         String formno = "" + random;
         String name = nametextfield.getText();
         String fname = fnametextfield.getText();
-        String dob = datechooser.getDate().toString();
-
         if (datechooser.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Please select your date of birth.");
             return; // stop here so the rest of the method doesn't run with bad data
         }
+        String dob = datechooser.getDate().toString();
 
         String gender = null;
         if (male.isSelected()) {
@@ -217,15 +218,17 @@ public class signupone extends JFrame implements ActionListener {
         try {
             if (name.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Name is required");
-            } else {
+            }
+
+            else {
                 connection c = new connection();
                 String query = "insert into signup values('" + formno + "','" + name + "','" + fname + "','" + email + "','" + dob + "','" + marital + "','" + gender + "','" + address + "','" + state + "','" + city + "','" + pincode + "')";
                 c.s.executeUpdate(query);//to run the ddl command
-//
-//                if(ae.getSource()==next){
-//                    setVisible(false);
-//                    new signuptwo().setVisible(true);
-//                }
+
+                if(ae.getSource()==next){
+                    setVisible(false);
+                    new signuptwo().setVisible(true);
+                }
             }
         } catch (Exception e) {
             System.out.println(e);
