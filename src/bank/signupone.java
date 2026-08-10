@@ -25,41 +25,40 @@ public class signupone extends JFrame implements ActionListener {
 
         // to make the random number application panel
         JLabel formno = new JLabel("Application form no:" + random);
-        formno.setFont(new Font("Osward", Font.ITALIC, 30));
+        formno.setFont(new Font("Helvetica Neue", Font.ITALIC, 30));
         formno.setBounds(170, 20, 500, 50);
         add(formno);
-
         // to make the sub header
         JLabel pageNo = new JLabel("Page 1: Personal details");
-        pageNo.setFont(new Font("Osward", Font.BOLD, 25));
+        pageNo.setFont(new Font("Helvetica Neue", Font.BOLD, 25));
         pageNo.setBounds(250, 70, 500, 40);
         add(pageNo);
 
         // to make the content
         JLabel Name = new JLabel("Name:");
-        Name.setFont(new Font("Raleway", Font.BOLD, 20));
+        Name.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         Name.setBounds(100, 140, 100, 40);
         add(Name);
 
         nametextfield = new JTextField();
-        nametextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        nametextfield.setFont(new Font("RHelvetica Neue", Font.PLAIN, 20));
         nametextfield.setBounds(280, 140, 300, 30);
         add(nametextfield);
 
 
         JLabel fName = new JLabel("Father's Name:");
-        fName.setFont(new Font("Raleway", Font.BOLD, 20));
+        fName.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         fName.setBounds(100, 190, 200, 40);
         add(fName);
 
         fnametextfield = new JTextField();
-        fnametextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        fnametextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         fnametextfield.setBounds(280, 190, 300, 40);
         add(fnametextfield);
 
 
         JLabel dob = new JLabel("Date of Birth:");
-        dob.setFont(new Font("Raleway", Font.BOLD, 20));
+        dob.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         dob.setBounds(100, 240, 200, 40);
         add(dob);
 
@@ -71,17 +70,21 @@ public class signupone extends JFrame implements ActionListener {
 
 
         JLabel gender = new JLabel("Gender:");
-        gender.setFont(new Font("Raleway", Font.BOLD, 20));
+        gender.setFont(new Font("RHelvetica Neue", Font.BOLD, 20));
         gender.setBounds(100, 290, 200, 40);
         add(gender);
 
         // to make the radio button for gender male and female
         male = new JRadioButton("Male");
         male.setBounds(280, 290, 100, 40);
+        male.setBackground(Color.WHITE);
+        male.setFocusPainted(false);
         add(male);
 
         female = new JRadioButton("Female");
         female.setBounds(380, 290, 100, 40);
+        female.setBackground(Color.WHITE);
+        female.setFocusPainted(false);
         add(female);
 
         //for to select the one button like on time
@@ -91,30 +94,36 @@ public class signupone extends JFrame implements ActionListener {
 
 
         JLabel email = new JLabel("E-mail:");
-        email.setFont(new Font("Raleway", Font.BOLD, 20));
+        email.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         email.setBounds(100, 340, 200, 40);
         add(email);
 
         emailtextfield = new JTextField();
-        emailtextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        emailtextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         emailtextfield.setBounds(280, 340, 300, 40);
         add(emailtextfield);
 
         JLabel marital = new JLabel("Marital stauts:");
-        marital.setFont(new Font("Raleway", Font.BOLD, 20));
+        marital.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         marital.setBounds(100, 390, 200, 40);
         add(marital);
 
         married = new JRadioButton("Married");
         married.setBounds(280, 390, 100, 40);
+        married.setBackground(Color.WHITE);
+        married.setFocusPainted(false);
         add(married);
 
         unmarried = new JRadioButton("Unmarried");
         unmarried.setBounds(380, 390, 100, 40);
+        unmarried.setBackground(Color.WHITE);
+        unmarried.setFocusPainted(false);
         add(unmarried);
 
         other = new JRadioButton("Others");
         other.setBounds(500, 390, 100, 40);
+        other.setBackground(Color.WHITE);
+        other.setFocusPainted(false);
         add(other);
 
         ButtonGroup buttongroup1 = new ButtonGroup();
@@ -124,48 +133,48 @@ public class signupone extends JFrame implements ActionListener {
 
 
         JLabel Address = new JLabel("Address:");
-        Address.setFont(new Font("Raleway", Font.BOLD, 20));
+        Address.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         Address.setBounds(100, 440, 200, 40);
         add(Address);
 
         addresstextfield = new JTextField();
-        addresstextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        addresstextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         addresstextfield.setBounds(280, 440, 300, 40);
         add(addresstextfield);
 
         JLabel state = new JLabel("State:");
-        state.setFont(new Font("Raleway", Font.BOLD, 20));
+        state.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         state.setBounds(100, 490, 200, 40);
         add(state);
 
         statetextfield = new JTextField();
-        statetextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        statetextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         statetextfield.setBounds(280, 490, 300, 40);
         add(statetextfield);
 
         JLabel city = new JLabel("City:");
-        city.setFont(new Font("Raleway", Font.BOLD, 20));
+        city.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         city.setBounds(100, 540, 200, 40);
         add(city);
 
         citytextfield = new JTextField();
-        citytextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        citytextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         citytextfield.setBounds(280, 540, 300, 40);
         add(citytextfield);
 
         JLabel pincode = new JLabel("Pin Code:");
-        pincode.setFont(new Font("Raleway", Font.BOLD, 20));
+        pincode.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         pincode.setBounds(100, 590, 200, 40);
         add(pincode);
 
         pincodetextfield = new JTextField();
-        pincodetextfield.setFont(new Font("Raleway", Font.PLAIN, 20));
+        pincodetextfield.setFont(new Font("Helvetica Neue", Font.PLAIN, 20));
         pincodetextfield.setBounds(280, 590, 300, 40);
         add(pincodetextfield);
 
         // for the next button
         next = new JButton("Next");
-        next.setFont(new Font("Raleway", Font.BOLD, 20));
+        next.setFont(new Font("Helvetica Neue", Font.BOLD, 20));
         next.setBackground(Color.BLACK);
         next.setForeground(Color.WHITE);
         next.setOpaque(true);
@@ -227,7 +236,7 @@ public class signupone extends JFrame implements ActionListener {
 
                 if(ae.getSource()==next){
                     setVisible(false);
-                    new signuptwo().setVisible(true);
+                    new signuptwo(formno).setVisible(true);
                 }
             }
         } catch (Exception e) {
@@ -238,6 +247,11 @@ public class signupone extends JFrame implements ActionListener {
 
 
  public static void main (String args[]){
+     try {
+         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
         new signupone();
 
     }

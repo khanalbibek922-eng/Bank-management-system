@@ -86,7 +86,7 @@ public class Login extends JFrame implements ActionListener {
         setVisible(true); // to saw the frame because the frame is default hidden
         setLocation(350,200);
     }
-public void actionPerformed(ActionEvent ae){  //when we click the buttons it runs automatically by usong performed
+public void actionPerformed(ActionEvent ae){  //when we click the buttons it runs automatically by using actionperformed
 if(ae.getSource()==login){
 
 }
