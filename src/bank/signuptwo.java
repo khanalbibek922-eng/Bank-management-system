@@ -190,6 +190,9 @@ String formno;
        String query = "insert into signuptwo values('" + formno + "','" + religion + "','" + category + "','" + income + "','" + qualification + "','" + occupation + "','" + tax + "','" + citizen + "','" + account+ "')";
        c.s.executeUpdate(query);//to run the ddl command
 
+      //for the formno object
+      setVisible(false);
+      new signupthree(formno).setVisible(true);
       }
      catch (Exception e) {
       System.out.println(e);

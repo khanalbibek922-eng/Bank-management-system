@@ -48,7 +48,7 @@ public class Login extends JFrame implements ActionListener {
         PinTextField.setFont(new Font("Arial",Font.BOLD,20));
         add(PinTextField);
 
-        //for the sign in button
+        //for the signin button
         login=new JButton("Sign in");
         login.setBounds(300, 300, 100,30);
         login.setForeground(Color.WHITE);
@@ -96,7 +96,7 @@ else if(ae.getSource()==clear){
 }
 else if(ae.getSource()==Signup){
     setVisible(false);// to change the frame when we click signup
-    new signupone().setVisible(true);//now it open the signup frame
+    new signupone().setVisible(true);//now it open_the signup frame
 
 }
 }

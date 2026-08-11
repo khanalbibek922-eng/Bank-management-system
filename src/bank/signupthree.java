@@ -5,13 +5,14 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 import java.awt.event.*;
-
+public class signupthree  extends JFrame implements ActionListener {
 JButton submit,cancel;
 JCheckBox c1,c2,c3,c4,c5,c6,c7;
 JRadioButton savingAccount,FixedDeposit,CurrentAccount,DepositAccount;
+String formno;
 
-public class signupthree  extends JFrame implements ActionListener {
-    signupthree(){
+    signupthree(String formno){
+ this.formno=formno;
     setLayout(null);
         // for the header
         JLabel header=new JLabel("Page 3: Account Details");
@@ -190,27 +191,52 @@ public class signupthree  extends JFrame implements ActionListener {
         getContentPane().setBackground(Color.WHITE);
 
     }
-    public void actionPerformed(ActionEvent ae){
-      if(ae.getSource() == submit){
-   String accountType=null;
-   if(savingAccount.isSelected()){
-       accountType="saving Account";
-   }
-   else if(FixedDeposit.isSelected()){
-       accountType="Fixed Deposit";
-   }
-   else if(CurrentAccount.isSelected()){
-       accountType="Current Account";
-   }
-        }
-      else if(DepositAccount.isSelected()){
-         accountType=" Recurring Deposit Account ";
-      }
-        else if(ae.getSource() == cancel){
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == submit) {
+            String accountType = null;
+            if (savingAccount.isSelected()) {
+                accountType = "saving Account";
+            } else if (FixedDeposit.isSelected()) {
+                accountType = "Fixed Deposit";
+            } else if (CurrentAccount.isSelected()) {
+                accountType = "Current Account";
+            } else if (DepositAccount.isSelected()) {
+                accountType = "Recurring Deposit Account";
+            }
 
+            Random random = new Random();
+            String cardno = "" + Math.abs((random.nextLong() % 90000000L) + 57980640000000L);
+            String pincode = "" + Math.abs((random.nextLong() % 9000L) + 1000L);
+
+            String service = "";
+            if (c1.isSelected()) service += "ATM CARD";
+            else if (c2.isSelected()) service += "Internet Banking";
+            else if (c3.isSelected()) service += "Mobile Banking";
+            else if (c4.isSelected()) service += "Email & SMS Alert";
+            else if (c5.isSelected()) service += "Cheque Book";
+            else if (c6.isSelected()) service += "E-Statement";
+
+            if (accountType == null) {
+                JOptionPane.showMessageDialog(null, "Please enter your account type");
+                return; // stop here if invalid
+            }
+
+            try {
+                connection c = new connection();
+                String query = "insert into signupthree values('" + formno + "','" + accountType + "','" + cardno + "','" + pincode + "','" + service + "')";
+                String query2 = "insert into login values('" + formno + "','" + cardno + "','" + pincode + "')";
+                c.s.executeUpdate(query);
+                c.s.executeUpdate(query2);
+
+                JOptionPane.showMessageDialog(null, "Card Number:"+cardno+"\nPin"+pincode);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+        } else if (ae.getSource() == cancel) {
+            dispose();
         }
     }
-
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -218,7 +244,6 @@ public class signupthree  extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        new signupthree();
+        new signupthree("");
 
-    }
-}
+    }}
