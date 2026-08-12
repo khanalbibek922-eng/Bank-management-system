@@ -7,132 +7,84 @@ import java.sql.*;
 
 public class signIn extends JFrame implements ActionListener {
 
-    JButton sideDashboard, deposit, withdraw, transfer, statement, changePin, sideLogout;
     JButton quickDeposit, quickWithdraw, quickTransfer;
-      String name, cardno;
+    JButton hamburger;
+    JPanel mainContent;
+
+    String pincode;
     double balance;
 
-    signIn(String name,String cardno ) {
-        this.name = name;
-        this.cardno = cardno;
+    signIn(String pincode) {
+        this.pincode=pincode;
         setLayout(null);
 
-        //  SIDEBAR PANEL
-        JPanel sidebar = new JPanel();
-        sidebar.setLayout(null);
-        sidebar.setBounds(0, 0, 200, 700);
-        sidebar.setBackground(Color.BLACK);
-        add(sidebar);
+        // TOP BAR (logo + hamburger)
+        JPanel topBar = new JPanel();
+        topBar.setLayout(null);
+        topBar.setBounds(0, 0, 800, 60);
+        topBar.setBackground(Color.BLACK);
+        add(topBar);
 
         JLabel bankLogo = new JLabel("🏦 MyBank");
         bankLogo.setFont(new Font("SansSerif", Font.BOLD, 20));
         bankLogo.setForeground(Color.WHITE);
-        bankLogo.setBounds(20, 25, 160, 30);
-        sidebar.add(bankLogo);
+        bankLogo.setBounds(20, 15, 160, 30);
+        topBar.add(bankLogo);
 
+        hamburger = new JButton() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.WHITE);
+                int w = getWidth();
+                int h = getHeight();
+                int lineWidth = 18;
+                int x = (w - lineWidth) / 2;
+                int thickness = 2;
 
-         sideDashboard = new JButton("Dashboard");
-        sideDashboard.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        sideDashboard.setBackground(Color.BLACK);
-        sideDashboard.setForeground(Color.WHITE);
-        sideDashboard.setOpaque(true);
-        sideDashboard.setBorderPainted(false);          //  removes the rounded white border
-        sideDashboard.setFocusPainted(false);
-        sideDashboard.setContentAreaFilled(true);       // forces background fill to actually render
-        sideDashboard.setBounds(15, 100, 160, 30);
-        sidebar.add(sideDashboard);
+                g2.fillRect(x, h / 2 - 7, lineWidth, thickness);// top bar
+                g2.fillRect(x, h / 2, lineWidth, thickness);// middle bar
+                g2.fillRect(x, h / 2 + 7, lineWidth, thickness);// buttom bar
+            }
+        };
+        hamburger.setBackground(Color.BLACK);
+        hamburger.setBorderPainted(false);
+        hamburger.setOpaque(true);
+        hamburger.setFocusPainted(false);
+        hamburger.setContentAreaFilled(true);
+        hamburger.setBounds(740, 15, 30, 30);
+        hamburger.addActionListener(e -> {
+            JPopupMenu menu = buildDropdownMenu();
+            menu.show(hamburger, -170, hamburger.getHeight());
+        });
+        topBar.add(hamburger);
 
-         deposit = new JButton("Deposit");
-        deposit.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        deposit.setBackground(Color.BLACK);
-        deposit.setForeground(Color.WHITE);
-        deposit.setOpaque(true);
-        deposit.setBorderPainted(false);          //  removes the rounded white border
-        deposit.setFocusPainted(false);
-        deposit.setContentAreaFilled(true);       // forces background fill to actually render
-        deposit.setBounds(15, 150, 160, 30);
-        sidebar.add(deposit);
-
-        withdraw = new JButton("Withdraw");
-        withdraw.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        withdraw.setBackground(Color.BLACK);
-        withdraw.setForeground(Color.WHITE);
-        withdraw.setOpaque(true);
-        withdraw.setBorderPainted(false);
-        withdraw.setFocusPainted(false);
-        withdraw.setContentAreaFilled(true);
-        withdraw.setBounds(15, 200, 160, 30);
-        sidebar.add(withdraw);
-
-         transfer = new JButton("Transfer");
-        transfer.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        transfer.setBackground(Color.BLACK);
-        transfer.setForeground(Color.WHITE);
-        transfer.setOpaque(true);
-        transfer.setBorderPainted(false);
-        transfer.setFocusPainted(false);
-        transfer.setContentAreaFilled(true);
-        transfer.setBounds(15, 250, 160, 30);
-        sidebar.add(transfer);
-
-         statement = new JButton("Statement");
-        statement.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        statement.setBackground(Color.BLACK);
-        statement.setForeground(Color.WHITE);
-        statement.setOpaque(true);
-        statement.setBorderPainted(false);
-        statement.setFocusPainted(false);
-        statement.setContentAreaFilled(true);
-        statement.setBounds(15, 300, 160, 30);
-        sidebar.add(statement);
-
-         changePin = new JButton("Change Pin");
-        changePin.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        changePin.setBackground(Color.BLACK);
-        changePin.setForeground(Color.WHITE);
-        changePin.setOpaque(true);
-        changePin.setBorderPainted(false);
-        changePin.setFocusPainted(false);
-        changePin.setContentAreaFilled(true);
-        changePin.setBounds(15, 350, 160, 30);
-        sidebar.add(changePin);
-
-        sideLogout = new JButton("Logout");
-        sideLogout.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        sideLogout.setForeground(Color.WHITE);
-        sideLogout.setBackground(Color.BLACK);
-        sideLogout.setBorderPainted(false);
-        sideLogout.setFocusPainted(false);
-        sideLogout.setContentAreaFilled(false);
-        sideLogout.setHorizontalAlignment(SwingConstants.LEFT);
-        sideLogout.setBounds(15, 620, 170, 40);
-        sideLogout.addActionListener(this);
-        sidebar.add(sideLogout);
-
-        // MAIN CONTENT PANEL
-        JPanel mainContent = new JPanel();
+        // MAIN CONTENT PANEL (full width, below top bar)
+        mainContent = new JPanel();
         mainContent.setLayout(null);
-        mainContent.setBounds(200, 0, 600, 700);
+        mainContent.setBounds(0, 60, 800, 640);
         mainContent.setBackground(Color.WHITE);
         add(mainContent);
 
-        JLabel welcome = new JLabel("Welcome ,"+name );
+        JLabel welcome = new JLabel("Welcome ," );
         welcome.setFont(new Font("SansSerif", Font.BOLD, 24));
         welcome.setBounds(30, 30, 500, 35);
         mainContent.add(welcome);
 
-        JLabel accInfo = new JLabel("Account: " +cardno);
+        JLabel accInfo = new JLabel("Account: " + pincode);
         accInfo.setFont(new Font("SansSerif", Font.PLAIN, 15));
         accInfo.setForeground(Color.GRAY);
         accInfo.setBounds(30, 68, 400, 25);
         mainContent.add(accInfo);
 
-        // ===== BALANCE CARD =====
+        //  BALANCE CARD
         JPanel balanceCard = new JPanel();
         balanceCard.setLayout(null);
-        balanceCard.setBounds(30, 110, 540, 110);
+        balanceCard.setBounds(30, 110, 740, 110);
         balanceCard.setBackground(new Color(245, 245, 245));
-        balanceCard.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 1));
+        balanceCard.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 1));// to draw a outline border around the blance card panel
         mainContent.add(balanceCard);
 
         JLabel balanceLabel = new JLabel("Available Balance");
@@ -141,7 +93,7 @@ public class signIn extends JFrame implements ActionListener {
         balanceLabel.setBounds(20, 15, 300, 25);
         balanceCard.add(balanceLabel);
 
-        balance = fetchBalance(cardno); // pulls real value from DB
+        balance = fetchBalance(pincode);
 
         JLabel balanceAmount = new JLabel("Rs. " + String.format("%,.2f", balance));
         balanceAmount.setFont(new Font("SansSerif", Font.BOLD, 30));
@@ -179,6 +131,57 @@ public class signIn extends JFrame implements ActionListener {
         setResizable(false);
     }
 
+    // Builds the dropdown menu shown when the hamburger is clicked
+    private JPopupMenu buildDropdownMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        menu.setBackground(Color.BLACK);
+        menu.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+
+        String[] items = {"Dashboard", "Deposit", "Withdraw", "Transfer", "Statement", "Change Pin", "Logout"};
+
+        for (String item : items) {
+            JMenuItem menuItem = new JMenuItem(item);
+            menuItem.setFont(new Font("SansSerif", Font.PLAIN, 15));
+            menuItem.setBackground(Color.BLACK);
+            menuItem.setForeground(Color.WHITE);
+            menuItem.setOpaque(true);
+            menuItem.setBorderPainted(false);
+            menuItem.setPreferredSize(new Dimension(180, 35));
+
+            menuItem.addActionListener(e -> handleMenuClick(item));
+
+            menu.add(menuItem);
+        }
+        return menu;
+    }
+
+    private void handleMenuClick(String item) {
+        switch (item) {
+            case "Dashboard":
+                // already on dashboard, nothing to do (or refresh)
+                break;
+            case "Deposit":
+                // open deposit screen
+                break;
+            case "Withdraw":
+                // open withdraw screen
+                break;
+            case "Transfer":
+                // open transfer screen
+                break;
+            case "Statement":
+                // open mini statement screen
+                break;
+            case "Change Pin":
+                // open change pin screen
+                break;
+            case "Logout":
+                dispose();
+                // new Login();
+                break;
+        }
+    }
+
     // helper: keeps quick-action buttons visually consistent
     private void styleQuickButton(JButton b) {
         b.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -206,22 +209,16 @@ public class signIn extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == quickDeposit || ae.getSource() == deposit) {
+        if (ae.getSource() == quickDeposit) {
             // open deposit screen
-        } else if (ae.getSource() == quickWithdraw || ae.getSource() == withdraw) {
+        } else if (ae.getSource() == quickWithdraw) {
             // open withdraw screen
-        } else if (ae.getSource() == quickTransfer || ae.getSource() == transfer) {
+        } else if (ae.getSource() == quickTransfer) {
             // open transfer screen
-        } else if (ae.getSource() == statement) {
-            // open mini statement screen
-        } else if (ae.getSource() == changePin) {
-            // open change pin screen
-        } else if (ae.getSource() == sideLogout) {
-            dispose();
-            // new Login(); // adjust to your actual login class
         }
     }
-    public static void main(String args[]){
-        new signIn("","");
+
+    public static void main(String args[]) {
+        new signIn("");
     }
 }
