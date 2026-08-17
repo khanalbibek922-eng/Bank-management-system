@@ -9,10 +9,11 @@ public class signupthree  extends JFrame implements ActionListener {
 JButton submit,cancel;
 JCheckBox c1,c2,c3,c4,c5,c6,c7;
 JRadioButton savingAccount,FixedDeposit,CurrentAccount,DepositAccount;
-String formno;
+String formno,name;
 
-    signupthree(String formno){
+    signupthree(String formno,String name){
  this.formno=formno;
+ this.name=name;
     setLayout(null);
         // for the header
         JLabel header=new JLabel("Page 3: Account Details");
@@ -228,8 +229,11 @@ String formno;
                 c.s.executeUpdate(query);
                 c.s.executeUpdate(query2);
 
-                JOptionPane.showMessageDialog(null, "Card Number:"+cardno+"\nPin"+pincode);
-            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Card Number:" + cardno + "\nPin" + pincode);
+
+
+            }
+            catch (Exception e) {
                 System.out.println(e);
             }
 
@@ -244,6 +248,6 @@ String formno;
             e.printStackTrace();
         }
 
-        new signupthree("");
+        new signupthree("","");
 
     }}

@@ -109,18 +109,21 @@ public class signIn extends JFrame implements ActionListener {
         quickDeposit = new JButton("Deposit");
         styleQuickButton(quickDeposit);
         quickDeposit.setBounds(30, 295, 160, 45);
+        quickDeposit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quickDeposit.addActionListener(this);
         mainContent.add(quickDeposit);
 
         quickWithdraw = new JButton("Withdraw");
         styleQuickButton(quickWithdraw);
         quickWithdraw.setBounds(205, 295, 160, 45);
+        quickWithdraw.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quickWithdraw.addActionListener(this);
         mainContent.add(quickWithdraw);
 
         quickTransfer = new JButton("Transfer");
         styleQuickButton(quickTransfer);
         quickTransfer.setBounds(380, 295, 160, 45);
+        quickTransfer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quickTransfer.addActionListener(this);
         mainContent.add(quickTransfer);
 
@@ -209,14 +212,13 @@ public class signIn extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == quickDeposit) {
-            // open deposit screen
-        } else if (ae.getSource() == quickWithdraw) {
-            // open withdraw screen
-        } else if (ae.getSource() == quickTransfer) {
-            // open transfer screen
+         if(ae.getSource()== quickDeposit ) {
+             setVisible(false);
+             new Deposit(pincode).setVisible(true);
+
+         }
         }
-    }
+
 
     public static void main(String args[]) {
         new signIn("");

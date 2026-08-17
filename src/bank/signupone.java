@@ -236,8 +236,9 @@ public class signupone extends JFrame implements ActionListener {
 
                 if(ae.getSource()==next){
                     setVisible(false);
-                    new signuptwo(formno).setVisible(true);
+                    new signuptwo(formno, name).setVisible(true);
                 }
+
             }
         } catch (Exception e) {
             System.out.println(e);

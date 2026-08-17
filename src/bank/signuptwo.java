@@ -10,10 +10,11 @@ public class signuptwo extends JFrame implements ActionListener {
 JRadioButton yes,no,yes1,no1;
 JTextField  taxtextfield;
 JComboBox quali1, occ1,religion1,cate1,income1;
-String formno;
+String formno,name;
 
-    signuptwo(String formno) {// i have pass the string formno here because i need the same formno signup one here
+    signuptwo(String formno,String name) {// i have pass the string formno here because i need the same formno signup one here
     this.formno=formno;
+    this.name=name;
      setLayout(null);
 
         // to make the header
@@ -192,7 +193,7 @@ String formno;
 
       //for the formno object
       setVisible(false);
-      new signupthree(formno).setVisible(true);
+      new signupthree(formno,name).setVisible(true);
       }
      catch (Exception e) {
       System.out.println(e);
@@ -210,7 +211,7 @@ String formno;
             e.printStackTrace();
         }
 
-        new signuptwo(" ");
+        new signuptwo("","");
     }
 
 }
