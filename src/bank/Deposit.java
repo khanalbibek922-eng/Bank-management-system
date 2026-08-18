@@ -90,13 +90,27 @@ public class Deposit extends JFrame implements ActionListener  {
             String number =amountField.getText();
             Date date = new Date();
 
-        }
-        if(ae.getSource()== backButton){
-            setVisible(false);
-            new signIn(pincode).setVisible(true);
         if(number.equals(" ")){
             JOptionPane.showMessageDialog(null, "Please enter the amount you want to deposit");
         }
+        else{
+            try{
+                connection c=new connection();
+                String query="insert into bank values('"+pincode+"','"+date+"','Deposit','"+ number+"')";
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Rs"+ number +"Deposited successfully");
+                setVisible(false);
+                new signIn(pincode).setVisible(true);
+            }catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Deposit failed: " + e.getMessage());
+
+            }
+        }
+        }
+        else if(ae.getSource()==backButton){
+            setVisible(false);
+            new signIn(pincode).setVisible(true);
         }
 
     }
